@@ -1570,8 +1570,8 @@ this.createjs = this.createjs||{};
 	 * @namespace Graphics
 	 */
 	/**
-	 * Graphics command object. See {{#crossLink "Graphics"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information. See {{#crossLink "Graphics"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
-	 * @class MoveTo
+	 * Graphics command object. See {{#crossLink "Graphics/lineTo"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information. See {{#crossLink "Graphics"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
+	 * @class LineTo
 	 * @constructor
 	 * @param {Number} x
 	 * @param {Number} y
@@ -1589,8 +1589,8 @@ this.createjs = this.createjs||{};
 	}).prototype.exec = function(ctx) { ctx.lineTo(this.x,this.y); };
 
 	/**
-	 * Graphics command object. See {{#crossLink "Graphics"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
-	 * @class LineTo
+	 * Graphics command object. See {{#crossLink "Graphics/moveTo"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
+	 * @class MoveTo
 	 * @constructor
 	 * @param {Number} x
 	 * @param {Number} y
@@ -1609,7 +1609,7 @@ this.createjs = this.createjs||{};
 
 
 	/**
-	 * Graphics command object. See {{#crossLink "Graphics"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
+	 * Graphics command object. See {{#crossLink "Graphics/arcTo"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
 	 * @class ArcTo
 	 * @constructor
 	 * @param {Number} x1
@@ -1645,7 +1645,7 @@ this.createjs = this.createjs||{};
 	}).prototype.exec = function(ctx) { ctx.arcTo(this.x1, this.y1, this.x2, this.y2, this.radius); };
 
 	/**
-	 * Graphics command object. See {{#crossLink "Graphics"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
+	 * Graphics command object. See {{#crossLink "Graphics/arc"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
 	 * @class Arc
 	 * @constructor
 	 * @param {Number} x
@@ -1687,7 +1687,7 @@ this.createjs = this.createjs||{};
 	}).prototype.exec = function(ctx) { ctx.arc(this.x, this.y, this.radius, this.startAngle, this.endAngle, this.anticlockwise); };
 
 	/**
-	 * Graphics command object. See {{#crossLink "Graphics"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
+	 * Graphics command object. See {{#crossLink "Graphics/quadraticCurveTo"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
 	 * @class QuadraticCurveTo
 	 * @constructor
 	 * @param {Number} cpx
@@ -1717,7 +1717,7 @@ this.createjs = this.createjs||{};
 	}).prototype.exec = function(ctx) { ctx.quadraticCurveTo(this.cpx, this.cpy, this.x, this.y); };
 
 	/**
-	 * Graphics command object. See {{#crossLink "Graphics"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
+	 * Graphics command object. See {{#crossLink "Graphics/bezierCurveTo"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
 	 * @class BezierCurveTo
 	 * @constructor
 	 * @param {Number} cp1x
@@ -1758,7 +1758,7 @@ this.createjs = this.createjs||{};
 	}).prototype.exec = function(ctx) { ctx.bezierCurveTo(this.cp1x, this.cp1y, this.cp2x, this.cp2y, this.x, this.y); };
 
 	/**
-	 * Graphics command object. See {{#crossLink "Graphics"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
+	 * Graphics command object. See {{#crossLink "Graphics/rect"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
 	 * @class Rect
 	 * @constructor
 	 * @param {Number} x
@@ -1788,7 +1788,7 @@ this.createjs = this.createjs||{};
 	}).prototype.exec = function(ctx) { ctx.rect(this.x, this.y, this.w, this.h); };
 
 	/**
-	 * Graphics command object. See {{#crossLink "Graphics"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
+	 * Graphics command object. See {{#crossLink "Graphics/closePath"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
 	 * @class ClosePath
 	 * @constructor
 	 **/
@@ -1796,7 +1796,7 @@ this.createjs = this.createjs||{};
 	}).prototype.exec = function(ctx) { ctx.closePath(); };
 
 	/**
-	 * Graphics command object. See {{#crossLink "Graphics"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
+	 * Graphics command object to begin a new path. See {{#crossLink "Graphics"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
 	 * @class BeginPath
 	 * @constructor
 	 **/
@@ -1804,7 +1804,7 @@ this.createjs = this.createjs||{};
 	}).prototype.exec = function(ctx) { ctx.beginPath(); };
 
 	/**
-	 * Graphics command object. See {{#crossLink "Graphics"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
+	 * Graphics command object. See {{#crossLink "Graphics/beginFill"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
 	 * @class Fill
 	 * @constructor
 	 * @param {Object} style A valid Context2D fillStyle.
@@ -1833,6 +1833,7 @@ this.createjs = this.createjs||{};
 	};
 	/**
 	 * Creates a linear gradient style and assigns it to {{#crossLink "Fill/style:property"}}{{/crossLink}}.
+	 * See {{#crossLink "Graphics/beginLinearGradientFill"}}{{/crossLink}} for more information.
 	 * @method linearGradient
 	 * @param {Array} colors
 	 * @param {Array} ratios
@@ -1850,6 +1851,7 @@ this.createjs = this.createjs||{};
 	};
 	/**
 	 * Creates a radial gradient style and assigns it to {{#crossLink "Fill/style:property"}}{{/crossLink}}.
+	 * See {{#crossLink "Graphics/beginRadialGradientFill"}}{{/crossLink}} for more information.
 	 * @method radialGradient
 	 * @param {Array} colors
 	 * @param {Array} ratios
@@ -1869,6 +1871,7 @@ this.createjs = this.createjs||{};
 	};
 	/**
 	 * Creates a bitmap fill style and assigns it to {{#crossLink "Fill/style:property"}}{{/crossLink}}.
+	 * See {{#crossLink "Graphics/beginBitmapFill"}}{{/crossLink}} for more information.
 	 * @method bitmap
 	 * @param {Image} image
 	 * @param {String} [repetition] One of: repeat, repeat-x, repeat-y, or no-repeat.
@@ -1882,7 +1885,7 @@ this.createjs = this.createjs||{};
 	p.path = false;
 
 	/**
-	 * Graphics command object. See {{#crossLink "Graphics"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
+	 * Graphics command object. See {{#crossLink "Graphics/beginStroke"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
 	 * @class Stroke
 	 * @constructor
 	 * @param {Object} style A valid Context2D fillStyle.
@@ -1910,6 +1913,7 @@ this.createjs = this.createjs||{};
 	};
 	/**
 	 * Creates a linear gradient style and assigns it to {{#crossLink "Stroke/style:property"}}{{/crossLink}}.
+	 * See {{#crossLink "Graphics/beginLinearGradientStroke"}}{{/crossLink}} for more information.
 	 * @method linearGradient
 	 * @param {Array} colors
 	 * @param {Array} ratios
@@ -1922,6 +1926,7 @@ this.createjs = this.createjs||{};
 	p.linearGradient = G.Fill.prototype.linearGradient;
 	/**
 	 * Creates a radial gradient style and assigns it to {{#crossLink "Stroke/style:property"}}{{/crossLink}}.
+	 * See {{#crossLink "Graphics/beginRadialGradientStroke"}}{{/crossLink}} for more information.
 	 * @method radialGradient
 	 * @param {Array} colors
 	 * @param {Array} ratios
@@ -1936,6 +1941,7 @@ this.createjs = this.createjs||{};
 	p.radialGradient = G.Fill.prototype.radialGradient;
 	/**
 	 * Creates a bitmap fill style and assigns it to {{#crossLink "Stroke/style:property"}}{{/crossLink}}.
+	 * See {{#crossLink "Graphics/beginBitmapStroke"}}{{/crossLink}} for more information.
 	 * @method bitmap
 	 * @param {Image} image
 	 * @param {String} [repetition] One of: repeat, repeat-x, repeat-y, or no-repeat.
@@ -1945,7 +1951,7 @@ this.createjs = this.createjs||{};
 	p.path = false;
 
 	/**
-	 * Graphics command object. See {{#crossLink "Graphics"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
+	 * Graphics command object. See {{#crossLink "Graphics/setStrokeStyle"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
 	 * @class StrokeStyle
 	 * @constructor
 	 * @param {Number} width
@@ -1984,9 +1990,51 @@ this.createjs = this.createjs||{};
 		ctx.miterLimit = (this.miterLimit == null ? "10" : this.miterLimit);
 	};
 	p.path = false;
+<<<<<<< HEAD
+=======
+	
+	/**
+	 * Graphics command object. See {{#crossLink "Graphics/setStrokeDash"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
+	 * @class StrokeDash
+	 * @constructor
+	 * @param {Array} [segments]
+	 * @param {Number} [offset=0]
+	 **/
+	/**
+	 * @property segments
+	 * @type Array
+	 */
+	/**
+	 * @property offset
+	 * @type Number
+	 */
+	/**
+	 * @method exec
+	 * @param {CanvasRenderingContext2D} ctx
+	 */
+	(G.StrokeDash = function(segments, offset) {
+		this.segments = segments;
+		this.offset = offset||0;
+	}).prototype.exec = function(ctx) {
+		if (ctx.setLineDash) { // feature detection.
+			ctx.setLineDash(this.segments|| G.StrokeDash.EMPTY_SEGMENTS); // instead of [] to reduce churn.
+			ctx.lineDashOffset = this.offset||0;
+		}
+	};
+	/**
+	 * The default value for segments (ie. no dash).
+	 * @property EMPTY_SEGMENTS
+	 * @static
+	 * @final
+	 * @readonly
+	 * @protected
+	 * @type {Array}
+	 **/
+	G.StrokeDash.EMPTY_SEGMENTS = [];
+>>>>>>> 774d6b5... Minor improvements to Graphics command object docs.
 
 	/**
-	 * Graphics command object. See {{#crossLink "Graphics"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
+	 * Graphics command object. See {{#crossLink "Graphics/drawRoundRectComplex"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
 	 * @class RoundRect
 	 * @constructor
 	 * @param {Number} x
@@ -2062,7 +2110,7 @@ this.createjs = this.createjs||{};
 	};
 
 	/**
-	 * Graphics command object. See {{#crossLink "Graphics"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
+	 * Graphics command object. See {{#crossLink "Graphics/drawCircle"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
 	 * @class Circle
 	 * @constructor
 	 * @param {Number} x
@@ -2109,7 +2157,7 @@ this.createjs = this.createjs||{};
 	};
 
 	/**
-	 * Graphics command object. See {{#crossLink "Graphics"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
+	 * Graphics command object. See {{#crossLink "Graphics/drawPolyStar"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
 	 * @class PolyStar
 	 * @constructor
 	 * @param {Number} x
