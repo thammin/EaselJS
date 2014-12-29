@@ -1584,6 +1584,10 @@ this.createjs = this.createjs||{};
 	 * @property y
 	 * @type Number
 	 */
+	/**
+	 * @method exec
+	 * @param {CanvasRenderingContext2D} ctx
+	 */
 	(G.LineTo = function(x, y) {
 		this.x = x; this.y = y;
 	}).prototype.exec = function(ctx) { ctx.lineTo(this.x,this.y); };
@@ -1602,6 +1606,10 @@ this.createjs = this.createjs||{};
 	/**
 	 * @property y
 	 * @type Number
+	 */
+	/**
+	 * @method exec
+	 * @param {CanvasRenderingContext2D} ctx
 	 */
 	(G.MoveTo = function(x, y) {
 		this.x = x; this.y = y;
@@ -1637,6 +1645,10 @@ this.createjs = this.createjs||{};
 	/**
 	 * @property radius
 	 * @type Number
+	 */
+	/**
+	 * @method exec
+	 * @param {CanvasRenderingContext2D} ctx
 	 */
 	(G.ArcTo = function(x1, y1, x2, y2, radius) {
 		this.x1 = x1; this.y1 = y1;
@@ -1679,6 +1691,10 @@ this.createjs = this.createjs||{};
 	 * @property anticlockwise
 	 * @type Number
 	 */
+	/**
+	 * @method exec
+	 * @param {CanvasRenderingContext2D} ctx
+	 */
 	(G.Arc = function(x, y, radius, startAngle, endAngle, anticlockwise) {
 		this.x = x; this.y = y;
 		this.radius = radius;
@@ -1710,6 +1726,10 @@ this.createjs = this.createjs||{};
 	/**
 	 * @property y
 	 * @type Number
+	 */
+	/**
+	 * @method exec
+	 * @param {CanvasRenderingContext2D} ctx
 	 */
 	(G.QuadraticCurveTo = function(cpx, cpy, x, y) {
 		this.cpx = cpx; this.cpy = cpy;
@@ -1751,6 +1771,10 @@ this.createjs = this.createjs||{};
 	 * @property y
 	 * @type Number
 	 */
+	/**
+	 * @method exec
+	 * @param {CanvasRenderingContext2D} ctx
+	 */
 	(G.BezierCurveTo = function(cp1x, cp1y, cp2x, cp2y, x, y) {
 		this.cp1x = cp1x; this.cp1y = cp1y;
 		this.cp2x = cp2x; this.cp2y = cp2y;
@@ -1782,6 +1806,10 @@ this.createjs = this.createjs||{};
 	 * @property h
 	 * @type Number
 	 */
+	/**
+	 * @method exec
+	 * @param {CanvasRenderingContext2D} ctx
+	 */
 	(G.Rect = function(x, y, w, h) {
 		this.x = x; this.y = y;
 		this.w = w; this.h = h;
@@ -1792,6 +1820,10 @@ this.createjs = this.createjs||{};
 	 * @class ClosePath
 	 * @constructor
 	 **/
+	/**
+	 * @method exec
+	 * @param {CanvasRenderingContext2D} ctx
+	 */
 	(G.ClosePath = function() {
 	}).prototype.exec = function(ctx) { ctx.closePath(); };
 
@@ -1800,6 +1832,10 @@ this.createjs = this.createjs||{};
 	 * @class BeginPath
 	 * @constructor
 	 **/
+	/**
+	 * @method exec
+	 * @param {CanvasRenderingContext2D} ctx
+	 */
 	(G.BeginPath = function() {
 	}).prototype.exec = function(ctx) { ctx.beginPath(); };
 
@@ -1818,6 +1854,10 @@ this.createjs = this.createjs||{};
 	/**
 	 * @property matrix
 	 * @type Matrix2D
+	 */
+	/**
+	 * @method exec
+	 * @param {CanvasRenderingContext2D} ctx
 	 */
 	p = (G.Fill = function(style, matrix) {
 		this.style = style;
@@ -1900,6 +1940,10 @@ this.createjs = this.createjs||{};
 	 * @property ignoreScale
 	 * @type Boolean
 	 */
+	/**
+	 * @method exec
+	 * @param {CanvasRenderingContext2D} ctx
+	 */
 	p = (G.Stroke = function(style, ignoreScale) {
 		this.style = style;
 		this.ignoreScale = ignoreScale;
@@ -1976,6 +2020,10 @@ this.createjs = this.createjs||{};
 	/**
 	 * @property miterLimit
 	 * @type Number
+	 */
+	/**
+	 * @method exec
+	 * @param {CanvasRenderingContext2D} ctx
 	 */
 	p = (G.StrokeStyle = function(width, caps, joints, miterLimit) {
 		this.width = width;
@@ -2078,6 +2126,10 @@ this.createjs = this.createjs||{};
 	 * @property radiusBL
 	 * @type Number
 	 */
+	/**
+	 * @method exec
+	 * @param {CanvasRenderingContext2D} ctx
+	 */
 	(G.RoundRect = function(x, y, w, h, radiusTL, radiusTR, radiusBR, radiusBL) {
 		this.x = x; this.y = y;
 		this.w = w; this.h = h;
@@ -2129,11 +2181,44 @@ this.createjs = this.createjs||{};
 	 * @property radius
 	 * @type Number
 	 */
+	/**
+	 * @method exec
+	 * @param {CanvasRenderingContext2D} ctx
+	 */
 	(G.Circle = function(x, y, radius) {
 		this.x = x; this.y = y;
 		this.radius = radius;
 	}).prototype.exec = function(ctx) { ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2); };
 
+	/**
+	 * Graphics command object. See {{#crossLink "Graphics/drawEllipse"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
+	 * @class Ellipse
+	 * @constructor
+	 * @param {Number} x
+	 * @param {Number} y
+	 * @param {Number} w
+	 * @param {Number} h
+	 **/
+	/**
+	 * @property x
+	 * @type Number
+	 */
+	/**
+	 * @property y
+	 * @type Number
+	 */
+	/**
+	 * @property w
+	 * @type Number
+	 */
+	/**
+	 * @property h
+	 * @type Number
+	 */
+	/**
+	 * @method exec
+	 * @param {CanvasRenderingContext2D} ctx
+	 */
 	(G.Ellipse = function(x, y, w, h) {
 		this.x = x; this.y = y;
 		this.w = w; this.h = h;
@@ -2190,6 +2275,10 @@ this.createjs = this.createjs||{};
 	/**
 	 * @property angle
 	 * @type Number
+	 */
+	/**
+	 * @method exec
+	 * @param {CanvasRenderingContext2D} ctx
 	 */
 	(G.PolyStar = function(x, y, radius, sides, pointSize, angle) {
 		this.x = x; this.y = y;
