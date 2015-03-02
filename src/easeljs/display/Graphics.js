@@ -2038,48 +2038,6 @@ this.createjs = this.createjs||{};
 		ctx.miterLimit = (this.miterLimit == null ? "10" : this.miterLimit);
 	};
 	p.path = false;
-<<<<<<< HEAD
-=======
-	
-	/**
-	 * Graphics command object. See {{#crossLink "Graphics/setStrokeDash"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
-	 * @class StrokeDash
-	 * @constructor
-	 * @param {Array} [segments]
-	 * @param {Number} [offset=0]
-	 **/
-	/**
-	 * @property segments
-	 * @type Array
-	 */
-	/**
-	 * @property offset
-	 * @type Number
-	 */
-	/**
-	 * @method exec
-	 * @param {CanvasRenderingContext2D} ctx
-	 */
-	(G.StrokeDash = function(segments, offset) {
-		this.segments = segments;
-		this.offset = offset||0;
-	}).prototype.exec = function(ctx) {
-		if (ctx.setLineDash) { // feature detection.
-			ctx.setLineDash(this.segments|| G.StrokeDash.EMPTY_SEGMENTS); // instead of [] to reduce churn.
-			ctx.lineDashOffset = this.offset||0;
-		}
-	};
-	/**
-	 * The default value for segments (ie. no dash).
-	 * @property EMPTY_SEGMENTS
-	 * @static
-	 * @final
-	 * @readonly
-	 * @protected
-	 * @type {Array}
-	 **/
-	G.StrokeDash.EMPTY_SEGMENTS = [];
->>>>>>> 774d6b5... Minor improvements to Graphics command object docs.
 
 	/**
 	 * Graphics command object. See {{#crossLink "Graphics/drawRoundRectComplex"}}{{/crossLink}} and {{#crossLink "Graphics/append"}}{{/crossLink}} for more information.
