@@ -60,7 +60,7 @@ this.createjs = this.createjs||{};
 	 **/
 	function Matrix2D(a, b, c, d, tx, ty) {
 		this.setValues(a,b,c,d,tx,ty);
-		
+
 	// public properties:
 		// assigned in the setValues method.
 		/**
@@ -68,31 +68,31 @@ this.createjs = this.createjs||{};
 		 * @property a
 		 * @type Number
 		 **/
-	
+
 		/**
 		 * Position (0, 1) in a 3x3 affine transformation matrix.
 		 * @property b
 		 * @type Number
 		 **/
-	
+
 		/**
 		 * Position (1, 0) in a 3x3 affine transformation matrix.
 		 * @property c
 		 * @type Number
 		 **/
-	
+
 		/**
 		 * Position (1, 1) in a 3x3 affine transformation matrix.
 		 * @property d
 		 * @type Number
 		 **/
-	
+
 		/**
 		 * Position (2, 0) in a 3x3 affine transformation matrix.
 		 * @property tx
 		 * @type Number
 		 **/
-	
+
 		/**
 		 * Position (2, 1) in a 3x3 affine transformation matrix.
 		 * @property ty
@@ -136,11 +136,11 @@ this.createjs = this.createjs||{};
 	 * @readonly
 	 **/
 	Matrix2D.identity = null; // set at bottom of class definition.
-	
+
 
 // public methods:
 	/**
-	 * Sets the specified values on this instance. 
+	 * Sets the specified values on this instance.
 	 * @method setValues
 	 * @param {Number} [a=1] Specifies the a property for the new matrix.
 	 * @param {Number} [b=0] Specifies the b property for the new matrix.
@@ -231,7 +231,7 @@ this.createjs = this.createjs||{};
 	 * Prepends the specified matrix to this matrix.
 	 * This is the equivalent of multiplying `(specified matrix) * (this matrix)`.
 	 * For example, you could calculate the combined transformation for a child object using:
-	 * 
+	 *
 	 * 	var o = myDisplayObject;
 	 * 	var mtx = o.getMatrix();
 	 * 	while (o = o.parent) {
@@ -249,7 +249,7 @@ this.createjs = this.createjs||{};
 	/**
 	 * Generates matrix properties from the specified display object transform properties, and appends them to this matrix.
 	 * For example, you can use this to generate a matrix representing the transformations of a display object:
-	 * 
+	 *
 	 * 	var mtx = new createjs.Matrix2D();
 	 * 	mtx.appendTransform(o.x, o.y, o.scaleX, o.scaleY, o.rotation);
 	 * @method appendTransform
@@ -283,10 +283,10 @@ this.createjs = this.createjs||{};
 		} else {
 			this.append(cos*scaleX, sin*scaleX, -sin*scaleY, cos*scaleY, x, y);
 		}
-		
+
 		if (regX || regY) {
 			// append the registration offset:
-			this.tx -= regX*this.a+regY*this.c; 
+			this.tx -= regX*this.a+regY*this.c;
 			this.ty -= regX*this.b+regY*this.d;
 		}
 		return this;
@@ -295,14 +295,14 @@ this.createjs = this.createjs||{};
 	/**
 	 * Generates matrix properties from the specified display object transform properties, and prepends them to this matrix.
 	 * For example, you could calculate the combined transformation for a child object using:
-	 * 
+	 *
 	 * 	var o = myDisplayObject;
 	 * 	var mtx = new createjs.Matrix2D();
 	 * 	do  {
 	 * 		// prepend each parent's transformation in turn:
 	 * 		mtx.prependTransform(o.x, o.y, o.scaleX, o.scaleY, o.rotation, o.skewX, o.skewY, o.regX, o.regY);
 	 * 	} while (o = o.parent);
-	 * 	
+	 *
 	 * 	Note that the above example would not account for {{#crossLink "DisplayObject/transformMatrix:property"}}{{/crossLink}}
 	 * 	values. See {{#crossLink "Matrix2D/prependMatrix"}}{{/crossLink}} for an example that does.
 	 * @method prependTransform
@@ -449,7 +449,7 @@ this.createjs = this.createjs||{};
 	p.isIdentity = function() {
 		return this.tx === 0 && this.ty === 0 && this.a === 1 && this.b === 0 && this.c === 0 && this.d === 1;
 	};
-	
+
 	/**
 	 * Returns true if this matrix is equal to the specified matrix (all property values are equal).
 	 * @method equals
@@ -507,7 +507,7 @@ this.createjs = this.createjs||{};
 		}
 		return target;
 	};
-	
+
 	/**
 	 * Copies all properties from the specified matrix to this matrix.
 	 * @method copy
@@ -526,6 +526,33 @@ this.createjs = this.createjs||{};
 	p.clone = function() {
 		return new Matrix2D(this.a, this.b, this.c, this.d, this.tx, this.ty);
 	};
+
+  /**
+   * Return a Matrix3D instance?
+   * Idea: Implement as a new class(Matrix3D) to easeljs?
+   * @method toMatrix3D
+   * @return {Matrix3D} an instance of Matrix3D?
+   */
+  p.toMatrix3D = function() {
+    return {
+      a1: this.a,
+      b1: this.b,
+      c1: 0,
+      d1: 0,
+      a2: this.c,
+      b2: this.d,
+      c2: 0,
+      d2: 0,
+      a3: 0,
+      b3: 0,
+      c3: 1,
+      d3: 0,
+      a4: this.tx,
+      b4: this.ty,
+      c4: 0,
+      d4: 1
+    };
+  };
 
 	/**
 	 * Returns a string representation of this object.

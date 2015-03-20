@@ -72,15 +72,15 @@ this.createjs = this.createjs||{};
 	 */
 	function DOMElement(htmlElement) {
 		this.DisplayObject_constructor();
-		
+
 		if (typeof(htmlElement)=="string") { htmlElement = document.getElementById(htmlElement); }
 		this.mouseEnabled = false;
-		
+
 		var style = htmlElement.style;
 		style.position = "absolute";
 		style.transformOrigin = style.WebkitTransformOrigin = style.msTransformOrigin = style.MozTransformOrigin = style.OTransformOrigin = "0% 0%";
-		
-		
+
+
 	// public properties:
 		/**
 		 * The DOM object to manage.
@@ -88,8 +88,8 @@ this.createjs = this.createjs||{};
 		 * @type HTMLElement
 		 */
 		this.htmlElement = htmlElement;
-	
-	
+
+
 	// private properties:
 		/**
 		 * @property _oldMtx
@@ -234,7 +234,7 @@ this.createjs = this.createjs||{};
 		stage&&stage.on("drawend", this._handleDrawEnd, this, true);
 		this.DisplayObject__tick(evtObj);
 	};
-	
+
 	/**
 	 * @method _handleDrawEnd
 	 * @param {Event} evt
@@ -244,24 +244,26 @@ this.createjs = this.createjs||{};
 		var o = this.htmlElement;
 		if (!o) { return; }
 		var style = o.style;
-		
+
 		var props = this.getConcatenatedDisplayProps(this._props), mtx = props.matrix;
-		
+
 		var visibility = props.visible ? "visible" : "hidden";
 		if (visibility != style.visibility) { style.visibility = visibility; }
 		if (!props.visible) { return; }
-		
+
 		var oldProps = this._oldProps, oldMtx = oldProps&&oldProps.matrix;
 		var n = 10000; // precision
-		
+
 		if (!oldMtx || !oldMtx.equals(mtx)) {
-			var str = "matrix(" + (mtx.a*n|0)/n +","+ (mtx.b*n|0)/n +","+ (mtx.c*n|0)/n +","+ (mtx.d*n|0)/n +","+ (mtx.tx+0.5|0);
-			style.transform = style.WebkitTransform = style.OTransform = style.msTransform = str +","+ (mtx.ty+0.5|0) +")";
-			style.MozTransform = str +"px,"+ (mtx.ty+0.5|0) +"px)";
+  		// A temporary fix to use matrix3d
+  		// fix the issue that DOM is not rendered properly on Android 4.1
+			var str = "matrix3d(" + (mtx.a*n|0)/n +","+ (mtx.b*n|0)/n +",0,0,"+ (mtx.c*n|0)/n +","+ (mtx.d*n|0)/n +",0,0,0,0,1,0,"+ (mtx.tx+0.5|0);
+			style.transform = style.WebkitTransform = style.OTransform = style.msTransform = str +","+ (mtx.ty+0.5|0) +",0,1)";
+			style.MozTransform = str +"px,"+ (mtx.ty+0.5|0) +"px,0,1)";
 			if (!oldProps) { oldProps = this._oldProps = new createjs.DisplayProps(true, NaN); }
 			oldProps.matrix.copy(mtx);
 		}
-		
+
 		if (oldProps.alpha != props.alpha) {
 			style.opacity = ""+(props.alpha*n|0)/n;
 			oldProps.alpha = props.alpha;
